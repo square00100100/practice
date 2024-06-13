@@ -1,0 +1,44 @@
+#include <iostream> 
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+//sort colors problem num 75
+    void sortColors(vector<int>& nums) {
+        int i, j, min_idx;
+        int n = nums.size();
+        for (i = 0; i < n - 1; i++) {
+            min_idx = i;
+            for (j = i + 1; j < n; j++) {
+                if (nums[j] < nums[min_idx])
+                    min_idx = j;
+            }
+            if (min_idx != i)
+                swap(nums[min_idx], nums[i]);
+        }
+    }
+};
+
+void printVector(const vector<int>& vec) {
+    for (int num : vec) {
+        cout << num << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> nums1 = { 2, 0, 2, 1, 1, 0 };
+    vector<int> nums2 = { 2, 0, 1 };
+    Solution solution;
+    solution.sortColors(nums1);
+    solution.sortColors(nums2);
+
+    cout << "Sorted nums1: ";
+    printVector(nums1);
+
+    cout << "Sorted nums2: ";
+    printVector(nums2);
+
+    return 0;
+}
